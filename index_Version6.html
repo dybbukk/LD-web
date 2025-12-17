@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Live & Direct Productions Ltd. — Toronto-based experiential marketing + event production." />
+  <meta name="theme-color" content="#0b0d12" />
+  <title>Live & Direct Productions Ltd.</title>
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.88);
+      --muted: rgba(255,255,255,.62);
+      --line: rgba(255,255,255,.12);
+      --shadow: 0 20px 50px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+      --pad: clamp(18px, 2.6vw, 28px);
+
+      /* Accent gradient (premium + calm) */
+      --g1: #7c5cff;
+      --g2: #2dd4bf;
+      --g3: #60a5fa;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 700px at 18% 12%, rgba(124,92,255,.16), transparent 50%),
+        radial-gradient(900px 700px at 82% 18%, rgba(45,212,191,.14), transparent 52%),
+        radial-gradient(900px 700px at 70% 80%, rgba(96,165,250,.12), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      letter-spacing: .2px;
+    }
+
+    /* Utility: visually-hidden (accessible hiding) */
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+      border: 0; padding: 0; margin: -1px;
+    }
+
+    /* Skip link */
+    .skip-link{
+      position: absolute;
+      left: -999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .skip-link:focus{
+      left: 12px;
+      top: 12px;
+      width: auto;
+      height: auto;
+      padding: 8px 12px;
+      background: rgba(255,255,255,.06);
+      border-radius: 8px;
+      z-index: 999;
+      text-decoration: none;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; text-decoration-color: rgba(255,255,255,.35); }
+    .container{ width: min(var(--max), calc(100% - 2*var(--pad))); margin-inline:auto; }
+
+    /* Header */
+    .header{
+      position: sticky; top:0; z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(11,13,18,.55);
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner{
+      display:flex; align-items:center; justify-content: space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap: 12px;
+      min-width: 220px;
+    }
+    .mark{
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124,92,255,.9), rgba(45,212,191,.85));
+      box-shadow: 0 10px 30px rgba(124,92,255,.18);
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    .brand h1{
+      font-size: 14px; margin:0; font-weight: 650;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+    .brand span{ display:block; font-size: 12px; color: var(--muted); font-weight: 500; text-transform:none; letter-spacing: .2px; }
+
+    .nav{
+      display:flex; gap: 16px; flex-wrap: wrap;
+      align-items:center; justify-content:flex-end;
+    }
+    .nav a{
+      font-size: 13px;
+      color: rgba(255,255,255,.74);
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+    .nav a:hover{
+      background: rgba(255,255,255,.06);
+      text-decoration: none;
+      color: rgba(255,255,255,.9);
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.9);
+      font-weight: 650;
+      font-size: 13px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      text-decoration:none;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{
+      text-decoration:none;
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.22);
+      transform: translateY(-1px);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(124,92,255,.92), rgba(45,212,191,.85));
+      border-color: rgba(255,255,255,.22);
+      color: #0b0d12;
+      box-shadow: 0 14px 40px rgba(124,92,255,.18);
+    }
+    .btn.primary:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+
+    /* Focus outlines for keyboard users (stronger contrast) */
+    :focus-visible {
+      outline: 3px solid #2dd4bf;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 4px rgba(45,212,191,.08);
+    }
+    /* fallback for browsers without :focus-visible */
+    a:focus, button:focus, input:focus, textarea:focus {
+      outline: 3px solid rgba(45,212,191,.28);
+      outline-offset: 3px;
+    }
+
+    /* Accent text (gradient) */
+    .accent-text{
+      background: linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Sections */
+    section{ padding: clamp(44px, 6vw, 78px) 0; }
+    .hero{ padding-top: clamp(42px, 6vw, 70px); }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size: 12px; color: rgba(255,255,255,.72);
+      padding: 8px 10px; border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 99px;
+      background: rgba(45,212,191,.95);
+      box-shadow: 0 0 0 6px rgba(45,212,191,.12);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: clamp(18px, 3.2vw, 34px);
+      align-items: start;
+      margin-top: 18px;
+    }
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .brand{ min-width: auto; }
+    }
+
+    h2{
+      font-size: clamp(30px, 4.2vw, 56px);
+      line-height: 1.05;
+      margin: 14px 0 14px 0;
+      letter-spacing: -0.8px;
+    }
+    .lead{
+      font-size: clamp(16px, 1.6vw, 18px);
+      color: rgba(255,255,255,.72);
+      margin: 0 0 20px 0;
+      max-width: 62ch;
+    }
+    .hero-actions{ display:flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .hero-side{
+      position: relative;
+      overflow:hidden;
+    }
+    .hero-side .stat{
+      display:flex; flex-direction: column;
+      padding: 16px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      margin-bottom: 12px;
+    }
+    .stat b{ font-size: 13px; letter-spacing: .3px; }
+    .stat span{ font-size: 12px; color: var(--muted); margin-top: 6px; }
+    .hero-side .note{
+      font-size: 12px;
+      color: rgba(255,255,255,.68);
+      margin: 10px 0 0 0;
+    }
+
+    .section-title{
+      display:flex; align-items: baseline; justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .section-title h3{
+      margin:0;
+      font-size: clamp(18px, 2.2vw, 26px);
+      letter-spacing: -0.3px;
+    }
+    .section-title p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 62ch;
+    }
+
+    .grid{
+      display:grid;
+      gap: 14px;
+    }
+    .grid.cols-3{ grid-template-columns: repeat(3, 1fr); }
+    .grid.cols-2{ grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 920px){
+      .grid.cols-3{ grid-template-columns: 1fr; }
+      .grid.cols-2{ grid-template-columns: 1fr; }
+    }
+
+    .service{
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
+    .service h4{ margin: 0 0 8px 0; font-size: 14px; letter-spacing: .2px; }
+    .service p{ margin:0; color: var(--muted); font-size: 13px; }
+
+    .logo-grid{
+      display:grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 920px){
+      .logo-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    .logo{
+      height: 66px;
+      border-radius: 16px;
+      border: 1px dashed rgba(255,255,255,.18);
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(255,255,255,.55);
+      background: rgba(255,255,255,.03);
+      font-size: 12px;
+      letter-spacing: .2px;
+    }
+
+    .steps{
+      counter-reset: step;
+    }
+    .step{
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      position: relative;
+      overflow:hidden;
+    }
+    .step::before{
+      counter-increment: step;
+      content: counter(step);
+      position:absolute;
+      top: 14px; right: 14px;
+      width: 34px; height: 34px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      font-weight: 750;
+      color: rgba(11,13,18,.9);
+      background: linear-gradient(135deg, rgba(96,165,250,.9), rgba(45,212,191,.85));
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    .step h4{ margin:0 0 8px 0; font-size: 14px; }
+    .step p{ margin:0; color: var(--muted); font-size: 13px; }
+
+    .about-wrap{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    @media (max-width: 920px){
+      .about-wrap{ grid-template-columns: 1fr; }
+    }
+    .about p{ margin:0; color: rgba(255,255,255,.72); }
+    .about .fine{ margin-top: 12px; color: var(--muted); font-size: 12px; }
+
+    /* Contact form */
+    form{
+      display:grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    label{ font-size: 12px; color: rgba(255,255,255,.72); display:block; margin-bottom:6px; }
+    input, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(11,13,18,.35);
+      color: rgba(255,255,255,.92);
+      outline: none;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(45,212,191,.55);
+      box-shadow: 0 0 0 4px rgba(45,212,191,.12);
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+
+    .form-status {
+      margin-top: 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,.9);
+    }
+    .form-status.success { color: #9be6d6; }
+    .form-status.error { color: #ffb4b4; }
+
+    .footer{
+      padding: 28px 0 40px 0;
+      color: rgba(255,255,255,.55);
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+    }
+    .footer a{ color: rgba(255,255,255,.72); }
+    .pill-row{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .pill{
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .btn{ transition:none; }
+    }
+
+    /* higher contrast preference */
+    @media (prefers-contrast: more) {
+      :root { --muted: rgba(255,255,255,.80); }
+      :focus-visible { outline: 4px solid #19b89c; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Skip to main content (targets the main content region after header) -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="#main-content" aria-label="Live & Direct Productions Ltd.">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <h1>Live & Direct <span>Productions Ltd.</span></h1>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a class="btn" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="kicker"><span class="dot" aria-hidden="true"></span> Toronto-based experiential + event production</div>
+
+        <div class="hero-grid">
+          <div>
+            <h2>Live experiences.<br>Delivered <span class="accent-text">live &amp; direct</span>.</h2>
+            <p class="lead">
+              Premium production leadership for experiential marketing and brand events.
+              Calm communication, precise planning, and a team that protects the work—from kickoff to show close.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#contact">Start a project</a>
+              <a class="btn" href="#work">View work</a>
+            </div>
+
+            <div class="pill-row" aria-label="Highlights">
+              <span class="pill">Run of show + show calling</span>
+              <span class="pill">Vendors + logistics</span>
+              <span class="pill">Budgets + schedules</span>
+              <span class="pill">On-site leadership</span>
+            </div>
+          </div>
+
+          <aside class="card hero-side" aria-label="What you get">
+            <div class="stat">
+              <b>Confident, calm execution</b>
+              <span>We de-risk the day-of with clear plans, clear owners, and no surprises.</span>
+            </div>
+            <div class="stat">
+              <b>Production-first thinking</b>
+              <span>Budgets, timelines, and technical realities shaped early—so creative lands as intended.</span>
+            </div>
+            <div class="stat">
+              <b>Agency + brand friendly</b>
+              <span>Built to integrate smoothly with your team, your stakeholders, and your standards.</span>
+            </div>
+            <p class="note">
+              Available for Toronto / GTA and travel, depending on scope.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h3>Services</h3>
+            <p>Everything you need to go from idea to flawless execution—without the chaos.</p>
+          </div>
+        </div>
+
+        <div class="grid cols-3">
+          <div class="service">
+            <h4>Experiential activations</h4>
+            <p>Brand experiences designed for real-world flow: builds, staffing, guest journey, and on-site delivery.</p>
+          </div>
+          <div class="service">
+            <h4>Conferences + corporate events</h4>
+            <p>Stage, screens, run of show, rehearsals—built to feel smooth and premium.</p>
+          </div>
+          <div class="service">
+            <h4>Sponsorship + partner programs</h4>
+            <p>Deliverables, approvals, timelines, and on-site integration that keeps everyone aligned.</p>
+          </div>
+          <div class="service">
+            <h4>Production management</h4>
+            <p>Budgets, schedules, vendor sourcing, scopes, and contracts—handled with clarity and care.</p>
+          </div>
+          <div class="service">
+            <h4>On-site leadership</h4>
+            <p>Show calling, issue resolution, and team leadership that keeps the room calm and moving.</p>
+          </div>
+          <div class="service">
+            <h4>Wrap + reporting</h4>
+            <p>Post-event debriefs, lessons learned, asset handoff, and close-out that makes the next one easier.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h3>Featured work</h3>
+            <p>
+              A snapshot of the kind of programs we support. Replace placeholders with client logos as you like.
+            </p>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 20px;">
+          <div class="logo-grid" aria-label="Client logos (placeholders)">
+            <div class="logo">Client Logo</div>
+            <div class="logo">Client Logo</div>
+            <div class="logo">Client Logo</div>
+            <div class="logo">Client Logo</div>
+            <div class="logo">Client Logo</div>
+            <div class="logo">Client Logo</div>
+          </div>
+          <p style="margin:14px 0 0 0; color: rgba(255,255,255,.62); font-size: 12px;">
+            Optional line you can keep or remove: Selected experience includes event production support on Shopify Summit (Toronto).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h3>Process</h3>
+            <p>A simple, repeatable approach that keeps creative strong and execution tight.</p>
+          </div>
+        </div>
+
+        <div class="grid cols-2 steps">
+          <div class="step">
+            <h4>Align</h4>
+            <p>Objectives, audience, constraints, success metrics, stakeholders. We get the “why” locked early.</p>
+          </div>
+          <div class="step">
+            <h4>Plan</h4>
+            <p>Budgets, schedules, vendors, logistics, risk planning, and approvals—built for clarity.</p>
+          </div>
+          <div class="step">
+            <h4>Build</h4>
+            <p>Run of show, staffing, technical coordination, rehearsals, and contingencies—ready for showtime.</p>
+          </div>
+          <div class="step">
+            <h4>Deliver</h4>
+            <p>On-site leadership and calm problem-solving, plus clean wrap and debrief.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h3>About</h3>
+            <p>Production leadership built for brands and agencies that care about craft—and want it delivered cleanly.</p>
+          </div>
+        </div>
+
+        <div class="about-wrap">
+          <div class="card about">
+            <p>
+              Live &amp; Direct Productions Ltd. is a Toronto-based event production company founded by Lior Dobkin.
+              Incorporated in 2025, we partner with teams that want premium execution without the noise—just clear
+              communication, strong planning, and a crew that shows up ready.
+            </p>
+            <p class="fine">
+              Add a sentence here about your niche (e.g., internal conferences, consumer activations, sponsorship programs),
+              and a short list of the industries you love working in.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="stat" style="margin:0;">
+              <b>How we work</b>
+              <span>Clear scopes. Tight schedules. Accurate budgets. No drama. Great outcomes.</span>
+            </div>
+            <div class="stat">
+              <b>What you can expect</b>
+              <span>Responsive comms, organized documentation, and a team that protects the plan.</span>
+            </div>
+            <div class="stat">
+              <b>Where we operate</b>
+              <span>Toronto / GTA + travel based on scope.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h3>Contact</h3>
+            <p>Share your goals, timing, and what success looks like. We’ll reply within 1–2 business days.</p>
+          </div>
+        </div>
+
+        <div class="grid cols-2">
+          <div class="card">
+            <p style="margin:0 0 10px 0; color: rgba(255,255,255,.78);">
+              Prefer email?
+            </p>
+            <p style="margin:0; color: rgba(255,255,255,.70);">
+              <strong>Email:</strong>
+              <!-- Replace this with your real email -->
+              <a href="mailto:hello@liveanddirectproductions.ca">hello@liveanddirectproductions.ca</a>
+            </p>
+
+            <p style="margin:14px 0 0 0; color: rgba(255,255,255,.62); font-size: 12px;">
+              Include: date/location, estimated attendance, scope, and any hard constraints (budget, venue, approvals).
+            </p>
+          </div>
+
+          <div class="card" aria-labelledby="contact-heading">
+            <h4 id="contact-heading" class="visually-hidden">Contact form</h4>
+
+            <!-- Netlify form: name + data-netlify + honeypot -->
+            <form id="contact-form"
+                  name="contact"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="hp"
+                  aria-label="Contact form">
+              <!-- Netlify required hidden input -->
+              <input type="hidden" name="form-name" value="contact" />
+
+              <!-- Honeypot (hidden visually and hidden from AT) -->
+              <div class="visually-hidden" aria-hidden="true">
+                <label for="hp">Don’t fill this out</label>
+                <input id="hp" name="hp" autocomplete="off" tabindex="-1" />
+              </div>
+
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" autocomplete="name" placeholder="Your name" required aria-required="true" />
+              </div>
+
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required aria-required="true" />
+              </div>
+
+              <div>
+                <label for="details">Project details</label>
+                <textarea id="details" name="details" placeholder="What are you building? Dates, location, attendance, scope, budget range (if known)..." required aria-required="true"></textarea>
+              </div>
+
+              <button class="btn primary" type="submit">Send inquiry</button>
+
+              <!-- Accessible status region for success / error messages -->
+              <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+
+              <p style="margin:10px 0 0 0; color: rgba(255,255,255,.56); font-size: 12px;">
+                This form will submit to Netlify Forms once deployed.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container" style="display:flex; gap:12px; justify-content:space-between; flex-wrap:wrap; align-items:center;">
+        <div>© <span id="year"></span> Live &amp; Direct Productions Ltd. • Toronto, ON</div>
+        <div><a href="#main-content">Back to top</a></div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      // year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // form handling + accessible messages
+      const form = document.getElementById('contact-form');
+      const statusEl = document.getElementById('form-status');
+
+      function setStatus(message, type) {
+        statusEl.textContent = message;
+        statusEl.classList.remove('success', 'error');
+        if (type === 'success') statusEl.classList.add('success');
+        if (type === 'error') statusEl.classList.add('error');
+        // Move focus to the status region so screen reader users are notified
+        statusEl.setAttribute('tabindex', '-1');
+        statusEl.focus({ preventScroll: true });
+      }
+
+      function clearStatus() {
+        statusEl.textContent = '';
+        statusEl.classList.remove('success', 'error');
+        statusEl.removeAttribute('tabindex');
+      }
+
+      form.addEventListener('submit', function (e) {
+        clearStatus();
+
+        // honeypot check
+        const hp = document.getElementById('hp');
+        if (hp && hp.value) {
+          // likely bot — block and show error
+          e.preventDefault();
+          setStatus('Submission blocked (spam detected).', 'error');
+          return;
+        }
+
+        // basic client-side validation with accessible messages
+        const name = form.querySelector('#name');
+        const email = form.querySelector('#email');
+        const details = form.querySelector('#details');
+
+        if (!name.value.trim() || !email.value.trim() || !details.value.trim()) {
+          e.preventDefault();
+          setStatus('Please complete all required fields before sending.', 'error');
+          return;
+        }
+
+        // Simple email pattern check
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email.value.trim())) {
+          e.preventDefault();
+          setStatus('Please enter a valid email address.', 'error');
+          email.focus();
+          return;
+        }
+
+        // If this page is deployed to Netlify (data-netlify="true"), allow the native submit to proceed.
+        // The browser will post the form and Netlify will capture the submission.
+        if (form.dataset.netlify === 'true') {
+          setStatus('Sending…', 'success');
+          // allow native submit to continue
+          return;
+        }
+
+        // Fallback for local/demo environments: prevent submission and simulate success.
+        e.preventDefault();
+        setStatus('Thanks — your message has been prepared. Deploy to Netlify to submit for real.', 'success');
+        setTimeout(() => form.reset(), 800);
+      });
+    })();
+  </script>
+</body>
+</html>

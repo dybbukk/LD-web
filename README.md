@@ -1,2 +1,0 @@
-# LD-web
-ld website

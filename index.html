@@ -288,6 +288,35 @@
       grid-template-columns: repeat(6, 1fr);
       gap: 12px;
     }
+    #work .logo-grid{
+  grid-template-columns: repeat(5, minmax(0, 1fr)); /* 5 logos */
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 920px){
+  #work .logo-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+    #work .client-logo{
+  height: 44px;
+  width: 100%;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+#work .logo{
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  
     @media (max-width: 920px){
       .logo-grid{ grid-template-columns: repeat(2, 1fr); }
     }
@@ -497,30 +526,28 @@
 </section>
 
 
-    <!-- WORK -->
-    <section id="work">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <h3>Featured work</h3>
-            <p>
-              A snapshot of the clients we've been privelaged to support, thank you for your trust.
-            </p>
-<div class="card" style="padding: 20px;">
-  <div class="logo-grid" aria-label="Client logos">
-    <img class="client-logo" src="/shopify_glyph.png" alt="Shopify logo" loading="lazy">
-    <img class="client-logo" src="/olg%20logo%201.png" alt="OLG logo" loading="lazy">
-    <img class="client-logo" src="/AC%20logo.webp" alt="Air Canada logo" loading="lazy">
-    <img class="client-logo" src="/InteracLogo.svg.png" alt="Interac logo" loading="lazy">
-    <img class="client-logo" src="/pepsilogo1.webp" alt="PepsiCo logo" loading="lazy">
-  </div>
-</div>
-
-          <p style="margin:14px 0 0 0; color: rgba(255,255,255,.62); font-size: 12px;">
-          </p>
-        </div>
+   <!-- WORK -->
+<section id="work">
+  <div class="container">
+    <div class="section-title">
+      <div>
+        <h3>Featured work</h3>
+        <p>A snapshot of the clients we've been privileged to support — thank you for your trust.</p>
       </div>
-    </section>
+    </div>
+
+    <div class="card" style="padding: 20px;">
+      <div class="logo-grid" aria-label="Client logos">
+        <img class="client-logo" src="/shopify_glyph.png" alt="Shopify logo" loading="lazy">
+        <img class="client-logo" src="/olg%20logo%201.png" alt="OLG logo" loading="lazy">
+        <img class="client-logo" src="/AC%20logo.webp" alt="Air Canada logo" loading="lazy">
+        <img class="client-logo" src="/InteracLogo.svg.png" alt="Interac logo" loading="lazy">
+        <img class="client-logo" src="/pepsilogo1.webp" alt="PepsiCo logo" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- PROCESS -->
     <section id="process">

@@ -626,6 +626,47 @@
     </section>
 
     <!-- ABOUT -->
+    <style>
+  /* Scoped ONLY to the About section */
+  #about .about-wrap{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  #about .about-wrap > .card{
+    height: 100%;
+  }
+
+  /* Remove “card inside card” look for the right column stats */
+  #about .stat{
+    border: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 0 14px 0 !important;
+  }
+  #about .stat:last-child{
+    margin-bottom: 0 !important;
+  }
+
+  #about .stat b{
+    display: block;
+    margin-bottom: 6px;
+  }
+  #about .stat span{
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  /* Mobile */
+  @media (max-width: 920px){
+    #about .about-wrap{
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
     <section id="about">
       <div class="container">
         <div class="section-title">
